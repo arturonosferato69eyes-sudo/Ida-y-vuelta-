@@ -3,122 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiniela Liguilla MX - Apertura 2026</title>
+<title>Quinielas Bajío - Liguilla $50</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-  body{background:#0f0f1a;color:#fff;padding:15px}
-  .container{max-width:650px;margin:auto}
-  header{text-align:center;background:linear-gradient(135deg,#d4af37,#b8860b);color:#000;padding:25px 15px;border-radius:15px;margin-bottom:20px}
-  header h1{font-size:28px;line-height:1.1}
-  header p{margin-top:8px;font-weight:bold}
-  .seccion{background:#1e1e2e;border-radius:15px;padding:18px;margin-bottom:20px;border:1px solid #333}
-  .seccion h2{text-align:center;color:#ffd700;margin-bottom:5px}
-  .seccion .fecha{text-align:center;color:#aaa;font-size:13px;margin-bottom:15px}
-  .partido{background:#2a2a3a;border-radius:12px;padding:12px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
-  .equipo{flex:1;text-align:center;font-weight:bold;font-size:15px}
-  .equipo span{display:block;font-size:11px;color:#aaa;font-weight:normal;margin-top:3px}
-  .marcador{display:flex;align-items:center;gap:6px}
-  .marcador input{width:45px;height:42px;text-align:center;font-size:20px;font-weight:bold;border-radius:8px;border:none;background:#fff;color:#000}
-  .vs{font-weight:bold;color:#ffd700}
-  input.nombre{width:100%;padding:13px;border-radius:10px;border:none;margin-bottom:15px;font-size:16px}
-  button{width:100%;padding:15px;background:#ffd700;color:#000;border:none;border-radius:12px;font-size:18px;font-weight:bold;cursor:pointer}
-  button:active{transform:scale(0.98)}
-  #resultado{text-align:center;margin-top:15px;font-weight:bold;color:#7CFC00;white-space:pre-line}
-  footer{text-align:center;color:#777;font-size:12px;margin-top:10px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f2f2f2;padding:10px}
+.cont{max-width:480px;margin:auto;background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,.15)}
+header{background:#16a34a;color:#fff;text-align:center;padding:20px 10px}
+header h1{font-size:26px;line-height:1.1}
+header p{font-size:13px;margin-top:5px}
+header .jornada{background:#facc15;color:#000;display:inline-block;padding:5px 18px;border-radius:20px;font-weight:bold;margin-top:10px;font-size:14px}
+.box{padding:15px}
+label{font-weight:bold;font-size:14px}
+input.nombre{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin-top:6px;font-size:15px}
+.boleto{text-align:center;background:#fef3c7;padding:10px;border-radius:10px;margin-top:12px;font-weight:bold;color:#92400e}
+.barra{background:#e5e7eb;height:10px;border-radius:20px;margin-top:8px;overflow:hidden}
+.barra div{background:#16a34a;height:100%;width:0%;transition:.3s}
+.progreso{text-align:center;font-size:13px;margin-top:5px;font-weight:bold}
+h2{font-size:15px;margin:18px 0 10px}
+.partido{border:1px solid #e5e7eb;border-radius:12px;padding:12px;margin-bottom:12px}
+.partido .titulo{color:#16a34a;font-weight:bold;font-size:13px}
+.partido .vs{text-align:center;font-weight:bold;font-size:15px;margin:8px 0;line-height:1.3}
+.partido .vs small{display:block;font-size:11px;color:#888;font-weight:normal}
+.botones{display:flex;gap:8px}
+.botones button{flex:1;padding:12px;border-radius:10px;border:1px solid #ddd;background:#fff;font-weight:bold;font-size:16px;cursor:pointer}
+.botones button.sel-L{background:#facc15;border-color:#eab308}
+.botones button.sel-E{background:#9ca3af;color:#fff;border-color:#6b7280}
+.botones button.sel-V{background:#16a34a;color:#fff;border-color:#15803d}
+.acciones button{width:100%;padding:13px;border:none;border-radius:10px;font-weight:bold;font-size:15px;margin-top:8px;cursor:pointer}
+.btn-aleatorio{background:#facc15}
+.btn-limpiar{background:#fee2e2}
+.btn-enviar{background:#25D366;color:#fff;font-size:16px}
+footer{text-align:center;font-size:11px;color:#888;padding:10px}
 </style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <h1>🏆 QUINIELA<br>LIGUILLA MX</h1>
-    <p>APERTURA 2026 - CUARTOS DE FINAL</p>
-    <p>¿Quién será el campeón?</p>
-  </header>
-
-  <input class="nombre" id="nombre" type="text" placeholder="✍️ Escribe tu nombre">
-
-  <div class="seccion">
-    <h2>🔥 PARTIDOS DE IDA</h2>
-    <div class="fecha">Miércoles 25 y Jueves 26 de Noviembre</div>
-
-    <div class="partido">
-      <div class="equipo">Pachuca<span>Local</span></div>
-      <div class="marcador"><input type="number" id="p1l" min="0"> <span class="vs">-</span> <input type="number" id="p1v" min="0"></div>
-      <div class="equipo">Chivas<span>Visitante</span></div>
-    </div>
-
-    <div class="partido">
-      <div class="equipo">León<span>Local</span></div>
-      <div class="marcador"><input type="number" id="p2l" min="0"> <span class="vs">-</span> <input type="number" id="p2v" min="0"></div>
-      <div class="equipo">Cruz Azul<span>Visitante</span></div>
-    </div>
-
-    <div class="partido">
-      <div class="equipo">Monterrey<span>Local</span></div>
-      <div class="marcador"><input type="number" id="p3l" min="0"> <span class="vs">-</span> <input type="number" id="p3v" min="0"></div>
-      <div class="equipo">América<span>Visitante</span></div>
-    </div>
-
-    <div class="partido">
-      <div class="equipo">Toluca<span>Local</span></div>
-      <div class="marcador"><input type="number" id="p4l" min="0"> <span class="vs">-</span> <input type="number" id="p4v" min="0"></div>
-      <div class="equipo">Atlas<span>Visitante</span></div>
-    </div>
-  </div>
-
-  <div class="seccion">
-    <h2>⚽ PARTIDOS DE VUELTA</h2>
-    <div class="fecha">Sábado 28 y Domingo 29 de Noviembre</div>
-
-    <div class="partido">
-      <div class="equipo">Chivas<span>Local</span></div>
-      <div class="marcador"><input type="number" id="p5l" min="0"> <span class="vs">-</span> <input type="number" id="p5v" min="0"></div>
-      <div class="equipo">Pachuca<span>Visitante</span></div>
-    </div>
-
-    <div class="partido">
-      <div class="equipo">Cruz Azul<span>Local</span></div>
-      <div class="marcador"><input type="number" id="p6l" min="0"> <span class="vs">-</span> <input type="number" id="p6v" min="0"></div>
-      <div class="equipo">León<span>Visitante</span></div>
-    </div>
-
-    <div class="partido">
-      <div class="equipo">América<span>Local</span></div>
-      <div class="marcador"><input type="number" id="p7l" min="0"> <span class="vs">-</span> <input type="number" id="p7v" min="0"></div>
-      <div class="equipo">Monterrey<span>Visitante</span></div>
-    </div>
-
-    <div class="partido">
-      <div class="equipo">Atlas<span>Local</span></div>
-      <div class="marcador"><input type="number" id="p8l" min="0"> <span class="vs">-</span> <input type="number" id="p8v" min="0"></div>
-      <div class="equipo">Toluca<span>Visitante</span></div>
-    </div>
-  </div>
-
-  <div class="seccion">
-    <h2>🏆 TU CAMPEÓN</h2>
-    <input class="nombre" id="campeon" type="text" placeholder="Escribe tu campeón: Chivas, Cruz Azul, América, Atlas, Toluca, Monterrey, León o Pachuca">
-  </div>
-
-  <button onclick="enviar()">ENVIAR MI QUINIELA ✅</button>
-  <div id="resultado"></div>
-
-  <footer>Liguilla MX Apertura 2026</footer>
+<div class="cont">
+<header>
+<h1>⚽ QUINIELAS<br>BAJÍO</h1>
+<p>¡Demuestra que sabes de fútbol!</p>
+<div class="jornada">LIGUILLA - CUARTOS DE FINAL</div>
+</header>
+<div class="box">
+<label>Nombre del participante:</label>
+<input class="nombre" id="nombre" type="text" placeholder="Escribe tu nombre">
+<div class="boleto">🎟️ BOLETO $50 PESOS</div>
+<div class="barra"><div id="barra"></div></div>
+<div class="progreso" id="progreso">Pronósticos seleccionados: 0 de 8 partidos seleccionados</div>
+<h2>🏆 SELECCIONA TUS RESULTADOS<br><span style="font-size:12px;color:#666">Local | Empate | Visitante</span></h2>
+<div id="partidos"></div>
+<div class="acciones">
+<button class="btn-aleatorio" onclick="aleatorio()">🎲 LLENAR ALEATORIAMENTE</button>
+<button class="btn-limpiar" onclick="limpiar()">🧹 LIMPIAR QUINIELA</button>
+<button class="btn-enviar" onclick="enviar()">📲 ENVIAR QUINIELA POR WHATSAPP</button>
 </div>
-
+</div>
+<footer>QUINIELAS BAJÍO © 2026</footer>
+</div>
 <script>
-function enviar(){
-  const nombre = document.getElementById('nombre').value || 'Sin nombre';
-  const campeon = document.getElementById('campeon').value || 'Sin campeón';
-  const ids = ['p1l','p1v','p2l','p2v','p3l','p3v','p4l','p4v','p5l','p5v','p6l','p6v','p7l','p7v','p8l','p8v'];
-  let texto = `QUINIELA LIGUILLA MX\nNombre: ${nombre}\nCampeón: ${campeon}\n\nIDA:\nPachuca ${document.getElementById('p1l').value||'-'} - ${document.getElementById('p1v').value||'-'} Chivas\nLeón ${document.getElementById('p2l').value||'-'} - ${document.getElementById('p2v').value||'-'} Cruz Azul\nMonterrey ${document.getElementById('p3l').value||'-'} - ${document.getElementById('p3v').value||'-'} América\nToluca ${document.getElementById('p4l').value||'-'} - ${document.getElementById('p4v').value||'-'} Atlas\n\nVUELTA:\nChivas ${document.getElementById('p5l').value||'-'} - ${document.getElementById('p5v').value||'-'} Pachuca\nCruz Azul ${document.getElementById('p6l').value||'-'} - ${document.getElementById('p6v').value||'-'} León\nAmérica ${document.getElementById('p7l').value||'-'} - ${document.getElementById('p7v').value||'-'} Monterrey\nAtlas ${document.getElementById('p8l').value||'-'} - ${document.getElementById('p8v').value||'-'} Toluca`;
-
-  document.getElementById('resultado').innerText = "¡Quiniela lista! Copiala y mándala por WhatsApp 👇\n\n" + texto;
-
-  // Copiar al portapapeles
-  navigator.clipboard.writeText(texto).then(()=>{
-    alert("¡Copiado! Ahora pégalo en WhatsApp");
+const partidos=[
+{ida:"IDA - 25/26 Nov", local:"PACHUCA", visita:"CHIVAS"},
+{ida:"IDA - 25/26 Nov", local:"LEÓN", visita:"CRUZ AZUL"},
+{ida:"IDA - 25/26 Nov", local:"MONTERREY", visita:"AMÉRICA"},
+{ida:"IDA - 25/26 Nov", local:"TOLUCA", visita:"ATLAS"},
+{ida:"VUELTA - 28/29 Nov", local:"CHIVAS", visita:"PACHUCA"},
+{ida:"VUELTA - 28/29 Nov", local:"CRUZ AZUL", visita:"LEÓN"},
+{ida:"VUELTA - 28/29 Nov", local:"AMÉRICA", visita:"MONTERREY"},
+{ida:"VUELTA - 28/29 Nov", local:"ATLAS", visita:"TOLUCA"},
+];
+let sel=Array(8).fill("");
+const cont=document.getElementById('partidos');
+partidos.forEach((p,i)=>{
+  const d=document.createElement('div');
+  d.className='partido';
+  d.innerHTML=`<div class="titulo">PARTIDO ${i+1} - ${p.ida}</div>
+  <div class="vs">${p.local}<small>VS</small>${p.visita}</div>
+  <div class="botones">
+    <button id="b${i}L" onclick="elegir(${i},'L')">🏆<br>L</button>
+    <button id="b${i}E" onclick="elegir(${i},'E')">⚽<br>E</button>
+    <button id="b${i}V" onclick="elegir(${i},'V')">⚽<br>V</button>
+  </div>`;
+  cont.appendChild(d);
+});
+function elegir(i,v){
+  sel[i]=v;
+  ['L','E','V'].forEach(x=>{
+    document.getElementById(`b${i}${x}`).className='';
+    if(x===v) document.getElementById(`b${i}${x}`).classList.add('sel-'+x);
   });
+  actualizar();
+}
+function actualizar(){
+  const n=sel.filter(x=>x!=="").length;
+  document.getElementById('barra').style.width=(n/8*100)+'%';
+  document.getElementById('progreso').innerText=`Pronósticos seleccionados: ${n} de 8 partidos seleccionados`;
+}
+function aleatorio(){
+  const ops=['L','E','V'];
+  sel.forEach((_,i)=> elegir(i, ops[Math.floor(Math.random()*3)]));
+}
+function limpiar(){
+  sel=Array(8).fill("");
+  document.querySelectorAll('.botones button').forEach(b=>b.className='');
+  actualizar();
+}
+function enviar(){
+  const nombre=document.getElementById('nombre').value || 'Sin nombre';
+  if(sel.includes("")){ alert('Te faltan partidos por seleccionar'); return; }
+  let texto=`*QUINIELAS BAJÍO - LIGUILLA $50*%0A`;
+  texto+=`Nombre: ${nombre}%0A%0A`;
+  partidos.forEach((p,i)=>{
+    let r= sel[i]==='L' ? p.local : sel[i]==='V' ? p.visita : 'EMPATE';
+    texto+=`PARTIDO ${i+1} (${p.ida}): ${p.local} vs ${p.visita} -> *${r} (${sel[i]})*%0A`;
+  });
+  texto+=`%0A🎟️ Boleto: $50 pesos`;
+  window.open('https://wa.me/524776315296?text='+texto,'_blank');
 }
 </script>
 </body>
